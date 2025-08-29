@@ -278,18 +278,18 @@ Você foi contratado para modelar o sistema de uma loja de instrumentos musicais
 
 ### ✅ Classes obrigatórias:
 
-- Produto  
+- Produto   (criar aquivo Produto.md)
   - Instrumento  
     - Cordas  
     - Metais  
     - Percussão  
   - Acessório  
-- Usuário (pai de Cliente e Funcionário)  
+- Usuário (criar aquivo Usuario.md)
   - Cliente  
   - Funcionário  
-- Venda  
-- Pedido  
-- Fornecedor  
+- Venda   (criar aquivo Venda.md)
+- Pedido  (criar aquivo Pedido.md)
+- Fornecedor  (criar aquivo Fornecedor.md)
 
 
 
