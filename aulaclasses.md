@@ -284,12 +284,13 @@ Você foi contratado para modelar o sistema de uma loja de instrumentos musicais
     - Metais  
     - Percussão  
   - Acessório  
+- Usuário (pai de Cliente e Funcionário)  
+  - Cliente  
+  - Funcionário  
 - Venda  
 - Pedido  
-- Cliente  
-- Funcionário  
-- Usuário (pai de Cliente e Funcionário)  
 - Fornecedor  
+
 
 
 ---
