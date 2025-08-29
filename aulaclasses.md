@@ -300,7 +300,7 @@ Você foi contratado para modelar o sistema de uma loja de instrumentos musicais
 - Cada classe deve ter **ao menos 2 métodos**, sendo **1 com retorno de valor** (`getPreco()`, `buscarItem()`, etc.).
 - Use **herança** (`<|--`) sempre que uma classe especializa outra.
 - Use **composição** ou **agregação** quando necessário (`*--`, `o--`).
-- Utilize associações com multiplicidade entre entidades (ex: Loja vende Produtos, Produto pertence à Marca).
+- Utilize associações com multiplicidade entre entidades (ex: Loja vende Produtos).
 - Mostre a hierarquia clara entre `Usuário`, `Cliente` e `Funcionário`.
 - Não copie o exemplo anterior. Modele com **criatividade e lógica real**.
 
