@@ -291,8 +291,7 @@ Você foi contratado para modelar o sistema de uma loja de instrumentos musicais
 - Funcionário  
 - Usuário (pai de Cliente e Funcionário)  
 - Fornecedor  
-- Marca  
-- Loja  
+
 
 ---
 
