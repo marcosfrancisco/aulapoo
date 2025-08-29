@@ -284,7 +284,6 @@ Você foi contratado para modelar o sistema de uma loja de instrumentos musicais
     - Metais  
     - Percussão  
   - Acessório  
-- Estoque  
 - Venda  
 - Pedido  
 - Cliente  
