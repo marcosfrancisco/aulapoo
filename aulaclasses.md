@@ -325,8 +325,7 @@ classDiagram
   class Fornecedor
   class Venda
   class Pedido
-  class Estoque
-  class Loja
+
 
   Usuario <|-- Cliente
   Usuario <|-- Funcionario
