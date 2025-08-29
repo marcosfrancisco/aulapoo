@@ -1,4 +1,8 @@
-# Aula: Diagramas de Classe com Mermaid no GitHub
+# 🧠 Aula Prática: Diagramas de Classe com Mermaid no GitHub
+
+Aprenda a usar **Mermaid.js** para criar diagramas UML dentro do seu repositório no GitHub. Os diagramas são criados com texto e renderizados automaticamente. Isso facilita a documentação e a manutenção do seu projeto.
+
+---
 
 ## Slide 1: Estrutura Básica de uma Classe
 
@@ -92,7 +96,7 @@ classDiagram
 
 ---
 
-## Slide 4: Herança com Métodos
+## Slide 4: Herança com Múltiplos Métodos e Retorno
 
 ### Visualização
 ```mermaid
@@ -100,16 +104,19 @@ classDiagram
   class Pessoa {
     +nome: string
     +cumprimentar(): void
+    +getIdade(): int
   }
 
   class Aluno {
     +matricula: string
     +assistirAula(): void
+    +verNotas(): string
   }
 
   class Professor {
     +salario: float
     +darAula(): void
+    +calcularHoras(): int
   }
 
   Pessoa <|-- Aluno
@@ -122,16 +129,19 @@ classDiagram
   class Pessoa {
     +nome: string
     +cumprimentar(): void
+    +getIdade(): int
   }
 
   class Aluno {
     +matricula: string
     +assistirAula(): void
+    +verNotas(): string
   }
 
   class Professor {
     +salario: float
     +darAula(): void
+    +calcularHoras(): int
   }
 
   Pessoa <|-- Aluno
@@ -206,7 +216,7 @@ classDiagram
 
 ---
 
-## Slide 8: Diagrama Completo
+## Slide 8: Diagrama Completo de Exemplo
 
 ### Visualização
 ```mermaid
@@ -214,59 +224,24 @@ classDiagram
   class Pessoa {
     +nome: string
     +cpf: string
+    +getDados(): string
   }
 
   class Aluno {
     +matricula: string
     +assistirAula(): void
+    +verNotas(): string
   }
 
   class Professor {
     +salario: float
     +darAula(): void
+    +calcularHoras(): int
   }
 
   class Turma {
     +codigo: string
-  }
-
-  class Curso {
-    +nomeCurso: string
-  }
-
-  class Disciplina {
-    +nomeDisciplina: string
-  }
-
-  Pessoa <|-- Aluno
-  Pessoa <|-- Professor
-
-  Professor "1" --> "*" Turma : leciona
-  Aluno "*" --> "1" Turma : frequenta
-  Curso "1" o-- "*" Disciplina : contém
-  Disciplina "1" --> "*" Turma : compõe
-```
-
-### Código
-```
-classDiagram
-  class Pessoa {
-    +nome: string
-    +cpf: string
-  }
-
-  class Aluno {
-    +matricula: string
-    +assistirAula(): void
-  }
-
-  class Professor {
-    +salario: float
-    +darAula(): void
-  }
-
-  class Turma {
-    +codigo: string
+    +listarAlunos(): string
   }
 
   class Curso {
@@ -290,20 +265,74 @@ classDiagram
 
 ## Slide 9: Dicas para GitHub
 
-- ✅ Use blocos ` ```mermaid ` dentro de arquivos `.md`  
-- ✅ GitHub renderiza automaticamente (no navegador)  
-- ⚠️ Evite acentos e cedilhas nos nomes dentro do diagrama  
-- 🔁 Use o [https://mermaid.live](https://mermaid.live) para testar antes de subir
+- ✅ Use blocos ` ```mermaid ` dentro de arquivos `.md`
+- ✅ GitHub renderiza automaticamente
+- ⚠️ Evite acentos ou `ç` nos nomes das classes
+- ✅ Use o site [https://mermaid.live](https://mermaid.live) para testar
 
 ---
 
-## Slide 10: Exercício para os Alunos
+## Slide 10: 🧩 Desafio Prático – Loja de Instrumentos Musicais 🎸🥁🎷
 
-Crie no seu repositório um diagrama Mermaid representando:
+Você foi contratado para modelar o sistema de uma loja de instrumentos musicais. Crie um **diagrama de classes UML com Mermaid** respeitando as seguintes exigências:
 
-- Um sistema de biblioteca  
-- Com as classes: `Livro`, `Autor`, `Usuário`, `Empréstimo`  
-- Use pelo menos:
-  - ✅ 1 herança  
-  - ✅ 1 associação  
-  - ✅ 1 composição  
+### ✅ Classes obrigatórias:
+
+- Produto  
+  - Instrumento  
+    - Cordas  
+    - Metais  
+    - Percussão  
+  - Acessório  
+- Estoque  
+- Venda  
+- Pedido  
+- Cliente  
+- Funcionário  
+- Usuário (pai de Cliente e Funcionário)  
+- Fornecedor  
+- Marca  
+- Loja  
+
+---
+
+### 🛠️ Regras:
+
+- Cada classe deve ter **ao menos 2 métodos**, sendo **1 com retorno de valor** (`getPreco()`, `buscarItem()`, etc.).
+- Use **herança** (`<|--`) sempre que uma classe especializa outra.
+- Use **composição** ou **agregação** quando necessário (`*--`, `o--`).
+- Utilize associações com multiplicidade entre entidades (ex: Loja vende Produtos, Produto pertence à Marca).
+- Mostre a hierarquia clara entre `Usuário`, `Cliente` e `Funcionário`.
+- Não copie o exemplo anterior. Modele com **criatividade e lógica real**.
+
+---
+
+### 💡 Dica de Esqueleto (sem atributos/métodos ainda):
+
+````markdown
+```mermaid
+classDiagram
+  class Usuario
+  class Cliente
+  class Funcionario
+  class Produto
+  class Instrumento
+  class Cordas
+  class Metais
+  class Percussao
+  class Acessorio
+  class Marca
+  class Fornecedor
+  class Venda
+  class Pedido
+  class Estoque
+  class Loja
+
+  Usuario <|-- Cliente
+  Usuario <|-- Funcionario
+  Produto <|-- Instrumento
+  Produto <|-- Acessorio
+  Instrumento <|-- Cordas
+  Instrumento <|-- Metais
+  Instrumento <|-- Percussao
+```
