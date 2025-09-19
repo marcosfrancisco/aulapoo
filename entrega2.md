@@ -211,7 +211,7 @@ public class Instrumento extends Produto {
 }
 
 // Acessorio.java
-public class Acessorio extends Produto {
+public class Acessorio Produto {
     private String material;
 
     public Acessorio(int codigo, String nome, double preco, Categoria categoria, String material) {
@@ -228,7 +228,6 @@ public class Acessorio extends Produto {
 // ItemVenda.java
 public class ItemVenda {
     private Produto produto;
-    private int quantidade;
     private double subtotal;
 
     public ItemVenda(Produto produto, int quantidade) {
@@ -242,7 +241,6 @@ public class ItemVenda {
     }
 
     public Produto getProduto() { return produto; }
-    public int getQuantidade() { return quantidade; }
     public double getSubtotal() { return subtotal; }
 }
 
@@ -255,7 +253,6 @@ public class Venda {
     private int id;
     private Date data;
     private List<ItemVenda> itens;
-    private double valorTotal;
 
     public Venda(int id, Date data) {
         this.id = id;
@@ -294,7 +291,6 @@ import java.util.List;
 
 public class Funcionario {
     private int id;
-    private String nome;
     private List<Produto> produtos;
     private List<Venda> vendas;
 
