@@ -9,6 +9,7 @@ Implementar um sistema simples de **loja de música** em Java, utilizando **hera
 
 ```mermaid
 classDiagram
+    %% PRODUTOS
     class Produto {
         <<abstract>>
         - int codigo
@@ -40,16 +41,16 @@ classDiagram
         + exibirDetalhes() void
     }
 
-    class Funcionario {
-        - int id
-        - String nome
-        + Funcionario(int id, String nome)
-        + cadastrarProduto(Produto p) void
-        + consultarProduto(int codigo) Produto
-        + gerarVenda() Venda
-        + consultarVenda(int id) Venda
+    class Categoria {
+        <<enumeration>>
+        CORDAS
+        PERCUSSAO
+        SOPRO
+        ELETRONICO
+        ACESSORIOS
     }
 
+    %% VENDAS
     class Venda {
         - int id
         - Date data
@@ -71,21 +72,26 @@ classDiagram
         + getQuantidade() int
     }
 
-    class Categoria {
-        <<enumeration>>
-        CORDAS
-        PERCUSSAO
-        SOPRO
-        ELETRONICO
-        ACESSORIOS
+    %% FUNCIONÁRIO
+    class Funcionario {
+        - int id
+        - String nome
+        + Funcionario(int id, String nome)
+        + cadastrarProduto(Produto p) void
+        + consultarProduto(int codigo) Produto
+        + gerarVenda() Venda
+        + consultarVenda(int id) Venda
     }
 
+    %% HERANÇAS
     Produto <|-- Instrumento
     Produto <|-- Acessorio
+
+    %% RELACIONAMENTOS
+    Produto --> Categoria
     Venda "1" *-- "many" ItemVenda
     ItemVenda "1" --> "1" Produto
     Funcionario "1" --> "*" Venda
-    Produto --> Categoria
 ```
 
 ---
