@@ -167,14 +167,13 @@ classDiagram
 ```java
 // Categoria.java
 public enum Categoria {
-    CORDAS, PERCUSSAO, SOPRO, ELETRONICO, ACESSORIOS
+    CORDAS, PERCUSSAO,
 }
 
 // Produto.java
 public abstract class Produto {
     private int codigo;
-    private String nome;
-    private double preco;
+       
     private Categoria categoria;
 
     public Produto(int codigo, String nome, double preco, Categoria categoria) {
@@ -186,7 +185,7 @@ public abstract class Produto {
 
     public int getCodigo() { return codigo; }
     public String getNome() { return nome; }
-    public double getPreco() { return preco; }
+    
     public Categoria getCategoria() { return categoria; }
 
     public void setPreco(double preco) { this.preco = preco; }
