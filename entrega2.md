@@ -71,7 +71,8 @@ classDiagram
         + getQuantidade() int
     }
 
-    enum Categoria {
+    class Categoria {
+        <<enumeration>>
         CORDAS
         PERCUSSAO
         SOPRO
