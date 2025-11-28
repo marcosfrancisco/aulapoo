@@ -162,8 +162,79 @@ public class TelaAluno extends JFrame {
         inicializarComponentes();
     }
 
+
     private void inicializarComponentes() {
         setLayout(new BorderLayout());
+
+        JPanel painelFormulario = new JPanel();
+        painelFormulario.setLayout(new GridLayout(4, 2, 5, 5));
+
+        JLabel lblNome = new JLabel("Nome:");
+        txtNome = new JTextField();
+
+        JLabel lblMatricula = new JLabel("Matrícula:");
+        txtMatricula = new JTextField();
+
+        JLabel lblCurso = new JLabel("Curso:");
+        txtCurso = new JTextField();
+
+        btnCadastrar = new JButton("Cadastrar");
+
+        painelFormulario.add(lblNome);
+        painelFormulario.add(txtNome);
+
+        painelFormulario.add(lblMatricula);
+        painelFormulario.add(txtMatricula);
+
+        painelFormulario.add(lblCurso);
+        painelFormulario.add(txtCurso);
+
+        painelFormulario.add(new JLabel());
+        painelFormulario.add(btnCadastrar);
+
+        modeloListaAlunos = new DefaultListModel<>();
+        listaAlunos = new JList<>(modeloListaAlunos);
+        JScrollPane scrollLista = new JScrollPane(listaAlunos);
+
+        add(painelFormulario, BorderLayout.NORTH);
+        add(scrollLista, BorderLayout.CENTER);
+
+        configurarEventos();
+    }
+
+    private void configurarEventos() {
+        btnCadastrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cadastrarAluno();
+            }
+        });
+    }
+
+    private void cadastrarAluno() {
+        String nome = txtNome.getText().trim();
+        String matricula = txtMatricula.getText().trim();
+        String curso = txtCurso.getText().trim();
+
+        if (nome.isEmpty() || matricula.isEmpty() || curso.isEmpty()) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Preencha todos os campos!",
+                    "Erro",
+                    JOptionPane.ERROR_MESSAGE
+            );
+            return;
+        }
+
+        Aluno aluno = new Aluno(nome, matricula, curso);
+        modeloListaAlunos.addElement(aluno);
+
+        txtNome.setText("");
+        txtMatricula.setText("");
+        txtCurso.setText("");
+        txtNome.requestFocus();
+    }
+}
 ```
 
 ### Explicando o uso de BorderLayout
