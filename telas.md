@@ -1,61 +1,100 @@
-# AULA – INTRODUÇÃO AO JAVA SWING + CADASTRO DE ALUNOS + MENU E SEGUNDA TELA
+
+# AULA COMPLETA – INTRODUÇÃO AO JAVA SWING, MONTAGEM DA TELA, EVENTOS, MENU E SEGUNDA TELA
 
 ## Objetivos da Aula
 
-Ao final desta atividade, você deverá ser capaz de:
+Este material apresenta de forma detalhada:
 
-- Entender o que é Java Swing e para que ele serve.
-- Criar uma janela (`JFrame`) com campos, botão e lista.
-- Cadastrar alunos em memória (sem banco de dados).
-- Exibir os alunos cadastrados na interface.
-- Criar um menu e abrir uma nova tela a partir dele.
+- O que é Java Swing e como funciona.
+- Como montar uma interface gráfica organizada.
+- Como posicionar corretamente componentes na tela.
+- Como cadastrar alunos e exibi‑los em uma lista.
+- Como criar menus e abrir uma segunda tela.
+- Exercícios finais para prática.
 
-## 1. O que é o Java Swing?
+---
 
-O Java Swing é a biblioteca que permite criar janelas e interfaces gráficas no Java.
+# 1. Introdução ao Java Swing
 
-Com Swing, você consegue criar:
+Java Swing é a biblioteca gráfica padrão do Java para construção de interfaces desktop.  
+Com ela, é possível criar janelas, botões, campos de texto, menus, listas, tabelas e diálogos.
 
-- Janelas → `JFrame`
-- Botões → `JButton`
-- Campos de texto → `JTextField`
-- Rótulos → `JLabel`
-- Listas → `JList`
-- Caixas de mensagens → `JOptionPane`
+Alguns componentes importantes:
 
-Ele já vem no Java. Não precisa instalar nada além do JDK.
+- `JFrame` – representa uma janela.
+- `JLabel` – exibe textos estáticos.
+- `JTextField` – campo de entrada de texto.
+- `JButton` – botão clicável.
+- `JList` – lista de elementos.
+- `DefaultListModel` – estrutura de dados da lista.
+- `JScrollPane` – adiciona barras de rolagem.
+- `JMenuBar`, `JMenu`, `JMenuItem` – para criação de menus.
+- `JOptionPane` – diálogos de alerta e mensagens.
 
-## 2. Componentes importantes usados na aula
+Swing utiliza um sistema chamado "Gerenciadores de Layout" para organizar componentes na tela.
 
-- `JFrame` → a janela principal.
-- `JLabel` → textos (rótulos).
-- `JTextField` → campo de digitação.
-- `JButton` → botão de ação.
-- `JList` → lista de elementos.
-- `DefaultListModel` → onde os itens da lista ficam armazenados.
-- Layouts:
-  - `BorderLayout` → organiza a janela em regiões.
-  - `GridLayout` → organiza componentes em grade.
+---
 
-## 3. Estrutura do sistema
+# 2. Layouts utilizados na aula
 
-| Classe       | Função                                      |
-|--------------|----------------------------------------------|
-| `Aluno`      | representa os dados de um aluno              |
-| `TelaAluno`  | interface gráfica com campos, botão e lista  |
-| `Main`       | ponto de entrada da aplicação                |
+Nesta aula serão usados dois layouts principais.
 
-## 4. Passo a passo do código
+## 2.1 BorderLayout
 
-Crie os arquivos:
+Divide a tela em cinco regiões: North, South, East, West e Center.
+
+Representação:
 
 ```
-Aluno.java
-TelaAluno.java
-Main.java
+ -------------------------------------
+|                NORTH                |
+ -------------------------------------
+|   WEST   |         CENTER          | EAST
+ -------------------------------------
+|                SOUTH                |
+ -------------------------------------
 ```
 
-## 4.1 Classe `Aluno.java`
+Características:
+
+- O componente em CENTER expande automaticamente.
+- Ideal para organizar uma janela principal.
+
+## 2.2 GridLayout
+
+Organiza componentes em formato de tabela (linhas x colunas).  
+Usamos um `GridLayout(4, 2, 5, 5)`, que significa:
+
+- 4 linhas
+- 2 colunas
+- 5px de espaçamento horizontal e vertical
+
+Representação do nosso formulário:
+
+```
+| Label Nome       | Campo Nome       |
+| Label Matrícula  | Campo Matrícula  |
+| Label Curso      | Campo Curso      |
+| (vazio)          | Botão Cadastrar  |
+```
+
+---
+
+# 3. Estrutura do Sistema
+
+O sistema será organizado em três classes:
+
+| Classe      | Função                                   |
+|-------------|-------------------------------------------|
+| `Aluno`     | Representa os dados de um aluno           |
+| `TelaAluno` | Interface gráfica principal               |
+| `Main`      | Classe inicial que abre a tela principal |
+
+---
+
+# 4. Código Completo e Explicado
+
+## 4.1 Classe Aluno
 
 ```java
 public class Aluno {
@@ -89,7 +128,14 @@ public class Aluno {
 }
 ```
 
-## 4.2 Classe `TelaAluno.java`
+Explicação:
+
+- A classe contém atributos.
+- O método `toString` define como o aluno será exibido na `JList`.
+
+---
+
+## 4.2 Classe TelaAluno – Explicação Detalhada
 
 ```java
 import javax.swing.*;
@@ -118,10 +164,33 @@ public class TelaAluno extends JFrame {
 
     private void inicializarComponentes() {
         setLayout(new BorderLayout());
+```
 
+### Explicando o uso de BorderLayout
+
+- A janela usa `BorderLayout`.
+- O formulário ficará em `NORTH`.
+- A lista ficará no `CENTER`.
+
+---
+
+### Montagem do formulário com GridLayout
+
+```java
         JPanel painelFormulario = new JPanel();
         painelFormulario.setLayout(new GridLayout(4, 2, 5, 5));
+```
 
+Explicação:
+
+- `GridLayout` organiza os campos e rótulos em formato de tabela.
+- Usamos 4 linhas e 2 colunas.
+
+---
+
+### Criação dos componentes
+
+```java
         JLabel lblNome = new JLabel("Nome:");
         txtNome = new JTextField();
 
@@ -132,7 +201,18 @@ public class TelaAluno extends JFrame {
         txtCurso = new JTextField();
 
         btnCadastrar = new JButton("Cadastrar");
+```
 
+Explicação:
+
+- Campos de texto armazenam os dados digitados.
+- O botão enviará os dados para cadastro.
+
+---
+
+### Adicionando os itens ao formulário
+
+```java
         painelFormulario.add(lblNome);
         painelFormulario.add(txtNome);
 
@@ -144,17 +224,44 @@ public class TelaAluno extends JFrame {
 
         painelFormulario.add(new JLabel());
         painelFormulario.add(btnCadastrar);
+```
 
+Explicação:
+
+- O `JLabel()` vazio serve apenas para ocupar espaço e alinhar o botão.
+
+---
+
+### Criando a lista de alunos
+
+```java
         modeloListaAlunos = new DefaultListModel<>();
         listaAlunos = new JList<>(modeloListaAlunos);
         JScrollPane scrollLista = new JScrollPane(listaAlunos);
+```
 
+Explicação:
+
+- `DefaultListModel` armazena os dados da lista.
+- `JList` exibe os dados.
+- `JScrollPane` adiciona rolagem.
+
+---
+
+### Adicionando à janela
+
+```java
         add(painelFormulario, BorderLayout.NORTH);
         add(scrollLista, BorderLayout.CENTER);
-
         configurarEventos();
     }
+```
 
+---
+
+## 4.3 Configuração dos eventos
+
+```java
     private void configurarEventos() {
         btnCadastrar.addActionListener(new ActionListener() {
             @Override
@@ -163,7 +270,18 @@ public class TelaAluno extends JFrame {
             }
         });
     }
+```
 
+Explicação:
+
+- `ActionListener` permite reagir a um clique.
+- Quando o usuário clica no botão, o método `cadastrarAluno` é executado.
+
+---
+
+## 4.4 Método cadastrarAluno
+
+```java
     private void cadastrarAluno() {
         String nome = txtNome.getText().trim();
         String matricula = txtMatricula.getText().trim();
@@ -190,7 +308,17 @@ public class TelaAluno extends JFrame {
 }
 ```
 
-## 4.3 Classe `Main.java`
+Explicação:
+
+- Valida os dados.
+- Cria o objeto `Aluno`.
+- Adiciona o aluno ao modelo da lista.
+- Limpa os campos.
+- Foca novamente no campo Nome.
+
+---
+
+# 5. Classe Main
 
 ```java
 import javax.swing.SwingUtilities;
@@ -209,26 +337,35 @@ public class Main {
 }
 ```
 
-## 5. Como compilar e executar
+Explicação:
+
+- `invokeLater` garante que a interface seja criada na thread de GUI.
+- Exibe a janela.
+
+---
+
+# 6. Como compilar e executar
 
 No terminal:
 
-```bash
+```
 javac Aluno.java TelaAluno.java Main.java
 java Main
 ```
 
-## 6. Exercício Final – Criar menu e abrir segunda tela
+---
 
-Você deve:
+# 7. Exercício Final – Adicionando Menu e Segunda Tela
 
-1. Criar um menu usando `JMenuBar`.
-2. Criar um menu chamado "Ajuda".
-3. Adicionar o item "Sobre".
-4. Criar a classe `TelaSobre`.
-5. Fazer o item "Sobre" abrir a nova tela.
+Você fará:
 
-### 6.1 Classe `TelaSobre.java`
+1. Criar `TelaSobre`.
+2. Criar um menu na `TelaAluno`.
+3. Abrir a segunda tela ao clicar no menu.
+
+---
+
+## 7.1 Classe TelaSobre
 
 ```java
 import javax.swing.*;
@@ -251,7 +388,11 @@ public class TelaSobre extends JFrame {
 }
 ```
 
-### 6.2 Adicionando menu na `TelaAluno`
+---
+
+## 7.2 Criando o menu na TelaAluno
+
+Dentro de `inicializarComponentes()`:
 
 ```java
 JMenuBar barraMenu = new JMenuBar();
@@ -264,7 +405,11 @@ barraMenu.add(menuAjuda);
 setJMenuBar(barraMenu);
 ```
 
-### 6.3 Abrindo a segunda tela
+---
+
+## 7.3 Abrindo a segunda tela
+
+No método `configurarEventos()`:
 
 ```java
 itemSobre.addActionListener(new ActionListener() {
@@ -275,3 +420,27 @@ itemSobre.addActionListener(new ActionListener() {
     }
 });
 ```
+
+---
+
+# 8. Conclusão
+
+Você aprendeu:
+
+- Como funciona o Swing.
+- Como organizar a tela com BorderLayout e GridLayout.
+- Como criar eventos.
+- Como manipular uma lista.
+- Como criar menus.
+- Como abrir novas janelas.
+
+---
+
+# 9. Exercícios Recomendados
+
+1. Criar botão para remover aluno selecionado.
+2. Criar botão para limpar toda lista.
+3. Criar menu Arquivo > Sair.
+4. Criar uma tela de edição de aluno.
+5. Criar uma tela inicial com botões que abrem outras janelas.
+
