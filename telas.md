@@ -436,11 +436,4 @@ Você aprendeu:
 
 ---
 
-# 9. Exercícios Recomendados
-
-1. Criar botão para remover aluno selecionado.
-2. Criar botão para limpar toda lista.
-3. Criar menu Arquivo > Sair.
-4. Criar uma tela de edição de aluno.
-5. Criar uma tela inicial com botões que abrem outras janelas.
 
